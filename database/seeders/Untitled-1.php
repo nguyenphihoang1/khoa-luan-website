@@ -1,0 +1,10 @@
+ [
+                'ten_san_pham'            => '',
+                'slug_san_pham'           => Str::slug(''),
+                'hinh_anh'                => '',
+                'mo_ta'                   => '- Phù hợp: Mặc đi học, đi làm, đi chơi, ở nhà.',
+                'gia_ban'                 => 335000,
+                'gia_khuyen_mai'          => null,
+                'id_chuyen_muc'           => '22',
+                'trang_thai'              => '1',
+            ],

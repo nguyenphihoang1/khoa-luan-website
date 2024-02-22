@@ -1,0 +1,47 @@
+<div class="card">
+    <div class="card-header">
+
+    </div>
+    <div class="card-body">
+
+    </div>
+</div>
+
+<label></label>
+<input class="form-control mt-1" type="text" id="">
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="text-center">#</th>
+            <th class="text-center">Tên Chuyên Mục</th>
+            <th class="text-center">Tình Trạng</th>
+            <th class="text-center">Chuyên Mục Cha</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th class="aligin-middle text-center"></th>
+            <td class="aligin-middle"></td>
+            <td class="aligin-middle"></td>
+            <td class="aligin-middle"></td>
+            <td class="text-center">
+                <button class="btn btn-info mr-1">Cập Nhật</button>
+                <button class="btn btn-danger">Xóa Bỏ</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+@extends('admin.share.master_page')
+@section('noi_dung')
+
+@endsection
+@section('js')
+<script>
+    $(document).ready(function() {
+
+    });
+</script>
+@endsection
