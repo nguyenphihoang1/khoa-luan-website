@@ -191,18 +191,7 @@
                 })
         },
 
-        changeStatus(id){
-            axios
-                .get('/admin/chuyen-muc/change-status/' + id)
-                .then((res) => {
-                    if(res.data.status) {
-                        toastr.success(res.data.message);
-                        this.loadData();
-                    }else{
-                        toastr.success(res.data.message);
-                    }
-                })
-        },
+
 
         deleteChuyenMuc(){
             axios

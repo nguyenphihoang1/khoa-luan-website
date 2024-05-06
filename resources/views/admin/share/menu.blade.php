@@ -83,6 +83,14 @@
                     <div class="menu-title">Chi Tiết Đơn Hàng</div>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/kich-hoat-tk/index">
+                    <div class="parent-icon">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                    <div class="menu-title">Danh Sách Khách Hàng</div>
+                </a>
+            </li>
         </ul>
     </nav>
 </div>

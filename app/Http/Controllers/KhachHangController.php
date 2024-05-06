@@ -133,4 +133,35 @@ class KhachHangController extends Controller
             ]);
         }
     }
+    public function active_account()
+    {
+        return view('admin.page.active_account');
+
+    }
+    public function data()
+    {
+        $data = KhachHang::select('khach_hangs.*')
+                        ->get();
+
+        return response()->json([
+            'data' => $data,
+        ]);
+    }
+    public function changeStatus($id)
+    {
+        $khachhang = KhachHang::where('id', $id)->first();
+        if($khachhang){
+            $khachhang->is_active = !$khachhang->is_active;
+            $khachhang->save();
+            return response()->json([
+                'status'    => true,
+                'message'   => 'Đã đổi trạng thái thành công'
+            ]);
+        }else{
+            return response()->json([
+                'status'     => false,
+                'message'    => 'Đã có lỗi sản phẩm không tồn tại !'
+            ]);
+        }
+    }
 }

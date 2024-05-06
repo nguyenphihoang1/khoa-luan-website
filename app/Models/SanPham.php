@@ -20,5 +20,6 @@ class SanPham extends Model
         'trang_thai',
         'gia_ban',
         'gia_khuyen_mai',
+        'so_luong'
     ];
 }

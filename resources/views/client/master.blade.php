@@ -3,6 +3,19 @@
 
 <head>
     @include('client.css')
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <style>
+        /* Định dạng chatbox */
+        .chatbox-container {
+            position: fixed; /* Vị trí cố định */
+            bottom: 20px; /* Khoảng cách từ dưới cùng của màn hình */
+            left: 20px; /* Khoảng cách từ bên trái của màn hình */
+            z-index: 9999; /* Đảm bảo hiển thị trên các phần tử khác */
+        }
+    </style>
+
 </head>
 
 <body>
@@ -219,16 +232,12 @@
         });
     </script>
     <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-    var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-    (function(){
-    var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-    s1.async=true;
-    s1.src='https://embed.tawk.to/641c53514247f20fefe79278/1gs7aauc8';
-    s1.charset='UTF-8';
-    s1.setAttribute('crossorigin','*');
-    s0.parentNode.insertBefore(s1,s0);
-    })();
-</script>
+<script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+    intent="WELCOME"
+    chat-title="ChatBox-AI-Website"
+    agent-id="7686b69d-ff47-40f8-a317-b8007d571f0b"
+    language-code="vi"
+></df-messenger>
     <!--End of Tawk.to Script-->
 </html>

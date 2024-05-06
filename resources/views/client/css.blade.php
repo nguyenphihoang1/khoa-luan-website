@@ -57,6 +57,15 @@
         --section-subheading-font-size: 16px;
         --section-subheading-font-weight: 400;
     }
+    .chatbox-container {
+    position: fixed !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    z-index: 9999 !important;
+    transform: translateX(-100%) !important;
+    transition: transform 0.3s ease !important;
+}
+
 </style>
 
 <link rel="stylesheet" href="/assets_client/css/vendor.css">

@@ -100,4 +100,28 @@ class SanPhamController extends Controller
             'data'  => $data,
         ]);
     }
+
+    public function updatequantity(Request $request)
+{
+    // Lấy sản phẩm từ cơ sở dữ liệu dựa trên id được gửi từ client
+    $sanpham = SanPham::find($request->id);
+
+    // Kiểm tra nếu không tìm thấy sản phẩm
+    if (!$sanpham) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Không tìm thấy sản phẩm',
+        ]);
+    }
+
+    // Cập nhật số lượng mới cho sản phẩm
+    $sanpham->so_luong = $request->newQuantity;
+    $sanpham->save();
+
+    // Trả về phản hồi JSON cho client
+    return response()->json([
+        'status' => true,
+        'message' => 'Cập nhật số lượng thành công',
+    ]);
+}
 }

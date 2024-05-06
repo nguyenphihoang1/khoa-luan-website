@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ChangePassword;
 use App\Http\Controllers\ChiTietBanHangController;
 use App\Http\Controllers\ChuyenMucController;
 use App\Http\Controllers\ConfigController;
@@ -29,6 +30,8 @@ Route::get('/forgetpw', [KhachHangController::class, 'forgetpw']);
 Route::post('/forgetpassword', [KhachHangController::class, 'forgetpassword']);
 Route::get('/active/{hash_active}', [KhachHangController::class, 'active']);
 
+
+
 Route::get('/contact', [TrangChuController::class, 'viewContact']);
 Route::get('/list-product/{id}', [TrangChuController::class, 'viewListProduct']);
 Route::get('/list-bai-viet/{loai_bai_viet}', [TrangChuController::class, 'viewListBaiViet']);
@@ -37,7 +40,7 @@ Route::get('/bai-viet/{id}', [TinTucController::class, 'viewDetailBaiViet']);
 Route::post('/search', [TrangChuController::class, 'search']);
 Route::post('/search2', [Search::class, 'search']);
 
-Route::group(['middleware' => 'homnayvangqua'], function() {
+Route::group(['middleware' => 'customer'], function() {
     Route::get('/auto', [TransactionController::class, 'auto']);
     Route::get('/logout', [KhachHangController::class, 'logout']);
     Route::post('/add-to-cart', [ChiTietBanHangController::class, 'addToCart']);
@@ -54,6 +57,10 @@ Route::group(['middleware' => 'homnayvangqua'], function() {
     Route::get('/don-hang', [DonHangController::class, 'viewDonhang']);
     Route::get('/don-hang/data', [DonHangController::class, 'getDataDonHang']);
     Route::get('/don-hang/{id}', [DonHangController::class, 'chiTietDonHang']);
+
+    Route::get('/changepassword/index',[ChangePassword::class,'index']);
+    Route::post('/changepassword',[ChangePassword::class,'changepassword']);
+
 });
 
 Route::get('/chart', [TestController::class, 'chart']);
@@ -74,7 +81,7 @@ Route::post('/customer/login', [KhachHangController::class, 'actionLogin']);
 Route::group(['prefix' => '/admin'], function() { //, 'middleware' => 'authadmin'
     // Route của Chuyên Mục
     Route::group(['prefix' => '/chuyen-muc'], function() {
-        Route::get('/index', [ChuyenMucController::class, 'index']);
+
         Route::get('/index-vue', [ChuyenMucController::class, 'indexVue']);
         Route::post('/create', [ChuyenMucController::class, 'store']);
         Route::get('/change-status/{id}', [ChuyenMucController::class, 'changeStatus']);
@@ -86,6 +93,12 @@ Route::group(['prefix' => '/admin'], function() { //, 'middleware' => 'authadmin
 
         Route::post('/update', [ChuyenMucController::class, 'update']);
     });
+    Route::group(['prefix' => '/kich-hoat-tk'], function() {
+        Route::get('/index', [KhachHangController::class, 'active_account']);
+        Route::get('/data', [KhachHangController::class, 'data']);
+        Route::get('/change-status/{id}', [KhachHangController::class, 'changeStatus']);
+    });
+
 
     // Route của Sản Phẩm
     Route::group(['prefix' => '/san-pham'], function() {
@@ -97,6 +110,7 @@ Route::group(['prefix' => '/admin'], function() { //, 'middleware' => 'authadmin
         Route::post('/delete', [SanPhamController::class, 'destroy']);
         Route::post('/update', [SanPhamController::class, 'update']);
         Route::post('/search', [SanPhamController::class, 'search']);
+        Route::post('/updatequantity', [SanPhamController::class, 'updatequantity']);
     });
 
     // Route của Tài khoản

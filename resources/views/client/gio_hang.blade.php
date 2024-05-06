@@ -9,11 +9,11 @@
                             <table class="cart-table w-100">
                                 <thead>
                                     <tr>
-                                        <th class="cart-caption heading_18">Product</th>
+                                        <th class="cart-caption heading_18">Sản Phẩm</th>
                                         <th class="cart-caption heading_18"></th>
-                                        <th class="cart-caption text-center heading_18 d-none d-md-table-cell">Quantity</th>
-                                        <th class="cart-caption text-end heading_18">đơn giá</th>
-                                        <th class="cart-caption text-end heading_18">Sub Total</th>
+                                        <th class="cart-caption text-center heading_18 d-none d-md-table-cell">Số Lượng</th>
+                                        <th class="cart-caption text-end heading_18">Đơn Giá</th>
+                                        <th class="cart-caption text-end heading_18">Tổng Tiền</th>
                                     </tr>
                                 </thead>
 
@@ -57,22 +57,22 @@
                                 <h3 class="cart-total-title d-none d-lg-block mb-0">Cart Totals</h4>
                                     <div class="cart-total-box mt-4">
                                         <div class="subtotal-item subtotal-box">
-                                            <h4 class="subtotal-title">Subtotals:</h4>
+                                            <h4 class="subtotal-title">Giá Tiền:</h4>
                                             <p class="subtotal-value">@{{ numberformat(sub) }}</p>
                                         </div>
                                         <div class="subtotal-item shipping-box">
-                                            <h4 class="subtotal-title">Shipping:</h4>
+                                            <h4 class="subtotal-title">Tiền Ship:</h4>
                                             <p class="subtotal-value">@{{ numberformat(ship) }}</p>
                                         </div>
                                         <hr />
                                         <div class="subtotal-item discount-box">
-                                            <h4 class="subtotal-title">Total:</h4>
+                                            <h4 class="subtotal-title">Tổng Tiền:</h4>
                                             <p class="subtotal-value">@{{ numberformat(ship + sub) }}</p>
                                         </div>
                                         <p class="shipping_text">Shipping & taxes calculated at checkout</p>
                                         <div class="d-flex justify-content-center mt-4">
                                             <a href="/checkout" class="position-relative btn-primary text-uppercase">
-                                                Procced to checkout
+                                                Thanh Toán
                                             </a>
                                         </div>
                                     </div>
@@ -126,12 +126,8 @@
                         count_ship += value.so_luong;
                     })
                     this.sub = total;
-                    if(count_ship == 0) {
-                        this.ship = 0;
-                    } else if(count_ship < 3) {
-                        this.ship = 30000;
-                    } else {
-                        this.ship = count_ship * 10000;
+                    if(count_ship > 1) {
+                        this.ship = 15000;
                     }
                 },
                 update(value) {

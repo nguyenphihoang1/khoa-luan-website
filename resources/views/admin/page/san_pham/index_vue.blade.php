@@ -25,6 +25,8 @@
                 <div id="holder" style="margin-top:15px;max-height:100px;"></div>
                 <label>Mô tả</label>
                 <input v-model="sp_add.mo_ta" class="form-control mt-1" type="text">
+                <label>Số Lượng</label>
+                <input v-model="sp_add.so_luong" class="form-control mt-1" type="number">
                 <label>Giá bán</label>
                 <input v-model="sp_add.gia_ban" class="form-control mt-1" type="number">
                 <label>Giá khuyến mãi</label>
@@ -61,6 +63,7 @@
                             <th class="text-center">Tên Sản Phẩm</th>
                             <th class="text-center">Hình Ảnh</th>
                             <th class="text-center">Giá Bán</th>
+                            <th class="text-center">Số Lượng</th>
                             <th class="text-center">Chuyên Mục</th>
                             <th class="text-center">Tình Trạng</th>
                             <th class="text-center">Action</th>
@@ -98,6 +101,13 @@
                                     </div>
                                 </td>
                                 <td class="align-middle">@{{ v.gia_ban }}</td>
+                                <div>
+                                    <td class="text-center align-middle text-nowrap">
+                                        <button v-on:click="reducequantity(v)"  class="btn btn-dark">-</button>
+                                        <input type="text"  class="form-control-sm" type="number"  @change="updateQuantity(v.id, $event.target.value)" :value=" v.so_luong">
+                                        <button  v-on:click="addquantity(v)" class="btn btn-dark">+</button>
+                                    </td>
+                                </div>
                                 <td class="align-middle text-nowrap">@{{ v.ten_chuyen_muc }}</td>
                                 <td class="align-middle text-nowrap">
                                     <template v-if="v.trang_thai">
@@ -205,6 +215,7 @@ new Vue({
     created()   {
         this.loadChuyenMuc();
         this.loadSanPham();
+
     },
     methods :   {
         add() {
@@ -277,7 +288,71 @@ new Vue({
         edit(v) {
             this.sp_edit = v;
             CKEDITOR.instances['mo_ta_edit'].setData(v.mo_ta);
-        }
+        },
+        addquantity(v)
+        {
+
+            var currentquantity       = parseInt(v.so_luong);
+            if(currentquantity >0){
+                var newcurrentquantity = currentquantity + 1;
+            }
+
+            axios
+                .post('/admin/san-pham/updatequantity', {newQuantity: newcurrentquantity , id: v.id})
+                .then((res) => {
+                    if(res.data.status)
+                    {
+                        toastr.success('tăng số lượng thành công');
+                        this.loadSanPham();
+                    }else{
+                        toastr.error('lỗi !!!');
+                    }
+                })
+                .catch((res) => {
+                    $.each(res.response.data.errors, function(k, v) {
+                        toastr.error(v[0]);
+                    });
+                });
+
+        },
+        reducequantity(v)
+        {
+
+            if(v.so_luong>0)
+            {
+                var newquantity = v.so_luong - 1;
+            }
+            axios
+                .post('/admin/san-pham/updatequantity', {newQuantity : newquantity , id : v.id} )
+                .then((res) => {
+                    if(res.data.status)
+                    {
+                        toastr.success('tăng số lượng thành công');
+                        this.loadSanPham();
+                    }else{
+                        toastr.error('lỗi !!!');
+                    }
+                })
+                .catch((res) => {
+                    $.each(res.response.data.errors, function(k, v) {
+                        toastr.error(v[0]);
+                    });
+                });
+        },
+        updateQuantity(productId, newQuantity) {
+            axios.post('/admin/san-pham/updatequantity', {
+                id: productId,
+                newQuantity: newQuantity
+            })
+            .then((response) => {
+                toastr.success('Cập nhật số lượng thành công');
+                this.loadSanPham(); // Load lại dữ liệu sản phẩm sau khi đã cập nhật thành công
+            })
+            .catch((error) => {
+                toastr.error('Có lỗi xảy ra khi cập nhật số lượng');
+                console.error('Lỗi khi cập nhật số lượng:', error);
+            });
+         },
     },
 });
 </script>

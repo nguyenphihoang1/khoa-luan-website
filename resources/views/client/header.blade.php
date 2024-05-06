@@ -40,7 +40,7 @@
                             <button type="button" class="currency-btn btn-reset text-white"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 <img class="flag" src="/assets_client/img/flag/usd.jpg" alt="img">
-                                <span>USD</span>
+                                <span>Cá Nhân</span>
                                 <span>
                                     <svg class="icon icon-dropdown" xmlns="http://www.w3.org/2000/svg"
                                         width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff"
@@ -52,33 +52,9 @@
 
                             <ul class="currency-list dropdown-menu dropdown-menu-end px-2">
                                 <li class="currency-list-item ">
-                                    <a class="currency-list-option" href="#" data-value="USD">
+                                    <a class="currency-list-option" href="/changepassword/index" data-value="Cá Nhân">
                                         <img class="flag" src="/assets_client/img/flag/usd.jpg" alt="img">
-                                        <span>USD</span>
-                                    </a>
-                                </li>
-                                <li class="currency-list-item ">
-                                    <a class="currency-list-option" href="#" data-value="CAD">
-                                        <img class="flag" src="/assets_client/img/flag/cad.jpg" alt="img">
-                                        <span>CAD</span>
-                                    </a>
-                                </li>
-                                <li class="currency-list-item ">
-                                    <a class="currency-list-option" href="#" data-value="EUR">
-                                        <img class="flag" src="/assets_client/img/flag/eur.jpg" alt="img">
-                                        <span>EUR</span>
-                                    </a>
-                                </li>
-                                <li class="currency-list-item ">
-                                    <a class="currency-list-option" href="#" data-value="JPY">
-                                        <img class="flag" src="/assets_client/img/flag/jpy.jpg" alt="img">
-                                        <span>JPY</span>
-                                    </a>
-                                </li>
-                                <li class="currency-list-item ">
-                                    <a class="currency-list-option" href="#" data-value="GBP">
-                                        <img class="flag" src="/assets_client/img/flag/gbp.jpg" alt="img">
-                                        <span>GBP</span>
+                                        <span>Đổi Mật Khẩu</span>
                                     </a>
                                 </li>
                             </ul>

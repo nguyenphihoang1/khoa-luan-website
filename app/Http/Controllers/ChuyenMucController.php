@@ -10,10 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 class ChuyenMucController extends Controller
 {
-    public function index()
-    {
-        return view('admin.page.chuyen_muc.index');
-    }
+
 
     public function indexVue()
     {

@@ -88,7 +88,9 @@
                         <div class="product-vendor product-meta mb-3">
                             <strong class="label">Nhóm sản phẩm:</strong> {{ $value->ten_chuyen_muc }}
                         </div>
-
+                        <div>
+                            <label class="form-control">Số lượng hiện có : {{$value->so_luong}}</label>
+                        </div>
                         <div class="misc d-flex align-items-end justify-content-between mt-4">
                             <div class="quantity d-flex align-items-center justify-content-between">
                                 <button class="qty-btn dec-qty"><img src="/assets_client/img/icon/minus.svg" alt="minus"></button>
@@ -108,7 +110,7 @@
                         <form class="product-form" action="#">
                             <div class="product-form-buttons d-flex align-items-center justify-content-between mt-4">
                                 @if(Auth::guard('customer')->check())
-                                <button id="addtocart_me" class="position-relative btn-atc btn-add-to-cart loader">ADD TO CART</button>
+                                <button id="addtocart_me" class="position-relative btn-atc btn-add-to-cart loader">Thêm Vào Giỏ Hàng</button>
                                 @else
                                 <button data-bs-toggle="modal" data-bs-target="#authModal" class="position-relative btn-atc btn-add-to-cart loader">ADD TO CART</button>
                                 @endif
@@ -119,7 +121,7 @@
                                 </a>
                             </div>
                             <div class="buy-it-now-btn mt-2">
-                                <button type="submit" class="position-relative btn-atc btn-buyit-now">BUY IT NOW</button>
+                                <button type="submit" class="position-relative btn-atc btn-buyit-now">Mua Ngay</button>
                             </div>
                         </form>
 
