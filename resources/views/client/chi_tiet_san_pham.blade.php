@@ -89,14 +89,59 @@
                             <strong class="label">Nhóm sản phẩm:</strong> {{ $value->ten_chuyen_muc }}
                         </div>
                         <div>
-                            <label class="form-control">Số lượng hiện có : {{$value->so_luong}}</label>
+                            <label  class="form-control">Số lượng hiện có : {{$value->so_luong}}</label>
                         </div>
+                        <?php
+                        // Giả sử $value->ten_chuyen_muc chứa giá trị số lượng bạn muốn lấy
+                        $soLuong = $value->so_luong;
+                        ?>
                         <div class="misc d-flex align-items-end justify-content-between mt-4">
-                            <div class="quantity d-flex align-items-center justify-content-between">
-                                <button class="qty-btn dec-qty"><img src="/assets_client/img/icon/minus.svg" alt="minus"></button>
-                                <input id="so_luong" class="qty-input" type="number" name="qty" value="1" min="0">
-                                <button class="qty-btn inc-qty"><img src="/assets_client/img/icon/plus.svg" alt="plus"></button>
+                            <div >
+                                <button class="btn btn-dark" onclick="decreaseQuantity()">-</button>
+
+                                <input id="so_luong" class="form-control-sm" type="number"  value="1" min="0" max="{{ $value->so_luong}}" oninput="checkMaxQuantity()">
+
+                                <button class="btn btn-dark" onclick="increaseQuantity()">+</button>
+
+
                             </div>
+                            <script>
+
+                                function increaseQuantity() {
+                                    var input = document.getElementById("so_luong");
+                                    var currentValue = parseInt(input.value);
+                                    var maxValue = <?php echo $soLuong; ?>; // Giá trị tối đa bạn muốn giới hạn
+                                    if (currentValue < maxValue) {
+                                        input.value = currentValue + 1;
+                                    }
+
+                                }
+
+                                function decreaseQuantity() {
+                                    var input = document.getElementById("so_luong");
+                                    var currentValue = parseInt(input.value);
+                                    var minValue = 0; // Giá trị tối thiểu bạn muốn giới hạn
+
+                                    if (currentValue > minValue) {
+                                        input.value = currentValue - 1;
+                                    }
+                                }
+                                function checkMaxQuantity() {
+                                    // Lấy trường input và giá trị hiện tại
+                                    var input = document.getElementById("so_luong");
+                                    var currentValue = parseInt(input.value);
+
+                                    // Lấy giá trị tối đa (max) từ thuộc tính max của trường input
+                                    var maxQuantity = parseInt(input.getAttribute("max"));
+
+                                    // Kiểm tra nếu giá trị nhập vào lớn hơn giá trị tối đa
+                                    if (currentValue > maxQuantity) {
+                                        // Đặt lại giá trị nhập vào bằng giá trị tối đa
+                                        input.value = maxQuantity;
+
+                                    }
+                                }
+                            </script>
                             <div class="message-popup d-flex align-items-center">
                                 <span class="message-popup-icon">
                                     <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
